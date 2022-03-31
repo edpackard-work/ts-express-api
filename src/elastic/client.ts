@@ -36,5 +36,5 @@ export const client = new Client({
   cloud: {
     id: cloudID,
   },
-  auth: auth,
+  auth,
 })

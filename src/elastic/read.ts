@@ -13,7 +13,11 @@ export const read = async () => {
     index: 'products',
     body: {
       query: {
-        match: { description: 'blender' }
+        fuzzy: {
+          name: {
+            value: 'margaritavil'
+          }
+        }
       }
     }
   })
