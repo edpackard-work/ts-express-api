@@ -1,6 +1,7 @@
 import app from '../app'
 
 import request from 'supertest';
+import mongoose from 'mongoose';
 
 describe('Integration test for /demo GET route', () => {
     it("returns correct status code and message", async () => {
@@ -9,4 +10,5 @@ describe('Integration test for /demo GET route', () => {
         expect(result.statusCode).toEqual(200);
         expect(result.body).toEqual("Demo GET route is working");
     })
+
 })
