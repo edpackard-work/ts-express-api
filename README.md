@@ -34,5 +34,11 @@ open http://localhost:3000/demo
 npm test
 ```
 
+## MongoDB connection
+
+Create a `.env` file in your local repo and add a valid MongoDB connection string with the following key:
+
+`MONGODB_URI='<your connection string here>'`
+
 
 
