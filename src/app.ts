@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 import express, {Application} from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import DemoRouter from './router/DemoRouter';
 import ProductRouter from './router/ProductRouter';
-
-=======
-import express, { Application } from "express";
->>>>>>> main
-
-import DemoRouter from "./router/DemoRouter";
 
 export const app: Application = express();
 
