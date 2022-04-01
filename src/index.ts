@@ -1,7 +1,14 @@
 import { app } from "./app";
+import { seed, read } from './elastic'
 import { dbConnect } from "./dbConnect";
 
-const PORT = process.env.PORT || 3000;
+if (process.env.SHOULD_SEED_ELASTIC === 'true') {
+  seed()
+}
+
+read()
+
+const PORT = process.env.PORT || 3000
 
 (async () => {
   await dbConnect();
