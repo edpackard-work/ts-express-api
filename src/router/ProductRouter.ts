@@ -14,7 +14,7 @@ class ProductRouter {
 
     private setUpRouter () {
         this.router.get('/:id', (req, res) => {
-            this.controller.getMessageById(req, res);
+            this.controller.getProductById(req, res);
         })
     }
 
