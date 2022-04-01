@@ -1,11 +1,11 @@
-import express, { Application } from "express";
+import express, { Application } from 'express'
 
-import DemoRouter from "./router/DemoRouter";
+import DemoRouter from './router/DemoRouter'
 
-export const app: Application = express();
+export const app: Application = express()
 
-const demoRouter = new DemoRouter();
+const demoRouter = new DemoRouter()
 
-app.use(express.json());
+app.use(express.json())
 
-app.use("/demo", demoRouter.getRouter());
+app.use('/demo', demoRouter.getRouter())

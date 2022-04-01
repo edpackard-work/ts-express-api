@@ -1,4 +1,4 @@
-import { client } from "./client"
+import { client } from './client'
 
 interface Product {
   name: String
@@ -15,11 +15,11 @@ export const read = async () => {
       query: {
         fuzzy: {
           name: {
-            value: 'margaritavil'
-          }
-        }
-      }
-    }
+            value: 'margaritavil',
+          },
+        },
+      },
+    },
   })
   console.log(result.hits.hits)
 }
