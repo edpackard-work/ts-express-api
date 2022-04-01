@@ -1,12 +1,8 @@
-import { Request, Response } from 'express'
+import { app } from '../app'
 import { productModel } from '../model/Product'
 
+import * as db from './setup/db'
 import request from "supertest";
-import { app } from '../app'
-
-import mongoose from 'mongoose';
-
-import { db } from "../set/db";
 
 const productData = {
   name: "Pen",
@@ -17,33 +13,37 @@ const productData = {
 };
 
 beforeAll(async () => {
-  await db.setUp();
+  await db.connect();
 });
 
 afterEach(async () => {
-  await db.dropCollections();
+  await db.clearDatabase();
 });
 
 afterAll(async () => {
-  await db.dropDatabase();
+  await db.closeDatabase();
 });
-
 
 describe('test for /:id GET route', () => {
 
   it('gets a product with a valid id', async () => {
     const validProduct = new productModel(productData);
     const savedProduct = await validProduct.save();
-    expect(savedProduct._id).toBeDefined();
-    console.log(savedProduct._id);
-    // expect(response.statusCode).toEqual(200);
-    // expect(response.body).toEqual("Unable to find matching document with id: 35354");
+
+    const response = await request(app).get(`/api/v1/products/${savedProduct._id}`)
+    
+    expect(response.statusCode).toEqual(200);
+    expect(response.body.name).toEqual("Pen");
+    expect(response.body.description).toEqual("it's a pen");
+    expect(response.body.stock).toEqual(7);
+    expect(response.body.price).toEqual(11);
+    expect(response.body.category).toEqual("stationery");
     })
 
-//   it('returns correct status code and message for invalid input', async () => {
-//     const result = await request(app).get("/:id");
-//     console.log(result);
-//     expect(result.statusCode).toEqual(404);
-//     expect(result.body).toEqual("Unable to find matching document with id: 35354");
-//   })
+  it('returns correct status code and message for invalid input', async () => {
+    const response = await request(app).get("/api/v1/products/35354");
+
+    expect(response.statusCode).toEqual(404);
+    expect(response.text).toEqual("Unable to find matching document with id: 35354");
+  })
 })
