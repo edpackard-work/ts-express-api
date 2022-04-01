@@ -8,7 +8,8 @@
         "test": "jest",
         "start": "node ./dist/index",
         "dev": "ts-node-dev --respawn src/index.ts",
-        "format": "prettier ./ -w"
+        "format": "prettier ./ -w",
+        "prepare": "husky install"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +21,7 @@
         "@types/mongoose": "^5.11.97",
         "@types/node": "^17.0.23",
         "@types/supertest": "^2.0.12",
+        "husky": "^7.0.4",
         "jest": "^27.5.1",
         "prettier": "^2.6.1",
         "supertest": "^6.2.2",
