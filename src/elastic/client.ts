@@ -1,19 +1,15 @@
 import { Client } from '@elastic/elasticsearch'
 import config from 'config'
 
-export interface ElasticConfig{
+export interface ElasticConfig {
   cloudID: string
   username: string
   password: string
   apiKey: string
 }
 
-const {
-  cloudID,
-  username,
-  password,
-  apiKey
-} = config.get<ElasticConfig>('elastic')
+const { cloudID, username, password, apiKey } =
+  config.get<ElasticConfig>('elastic')
 
 const devAuth = {
   username: username,
@@ -21,11 +17,11 @@ const devAuth = {
 }
 
 const prodAuth = {
-  apiKey
+  apiKey,
 }
 
 const auth = (() => {
-  if(process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     console.log('Using development elastic auth credentials')
     return devAuth
   }

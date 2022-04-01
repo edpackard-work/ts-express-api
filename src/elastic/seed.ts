@@ -1,4 +1,4 @@
-import { client } from './client';
+import { client } from './client'
 
 export const seed = async () => {
   await client.index({
@@ -8,8 +8,8 @@ export const seed = async () => {
       description: 'A blender for making margaritas and destroying the economy',
       price: 100,
       stock: 90,
-      category: 'white goods'
-    }
+      category: 'white goods',
+    },
   })
 
   await client.index({
@@ -19,21 +19,21 @@ export const seed = async () => {
       description: 'An all-purpose home device',
       price: 24.99,
       stock: 273,
-      category: 'white goods'
-    }
+      category: 'white goods',
+    },
   })
 
   await client.index({
     index: 'products',
     body: {
       name: 'Singing Stein',
-      description: 'The stein is not sentient but does have a pleasant singing voice',
+      description:
+        'The stein is not sentient but does have a pleasant singing voice',
       price: 24.99,
       stock: 273,
-      category: 'white goods'
-    }
+      category: 'white goods',
+    },
   })
 
-  await client.indices.refresh({index: 'products'})
+  await client.indices.refresh({ index: 'products' })
 }
-
