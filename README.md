@@ -10,7 +10,9 @@ Clone the repo and navigate to directory:
 git clone <repo name here>
 cd ts-express-api
 ```
+
 Install dependencies:
+
 ```
 npm install
 ```
@@ -39,6 +41,3 @@ npm test
 Create a `.env` file in your local repo and add a valid MongoDB connection string with the following key:
 
 `MONGODB_URI='<your connection string here>'`
-
-
-

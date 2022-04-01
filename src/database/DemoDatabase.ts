@@ -1,15 +1,13 @@
 class DemoDatabase {
-    
-    data: Array<String>
+  data: Array<String>
 
-    constructor () {
-        this.data = ['Demo GET route is working'];
-    };
+  constructor() {
+    this.data = ['Demo GET route is working']
+  }
 
-    public getMessageData() {
-        return this.data[0];
-    };
-
+  public getMessageData() {
+    return this.data[0]
+  }
 }
 
-export default DemoDatabase;
+export default DemoDatabase
