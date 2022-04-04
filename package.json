@@ -5,10 +5,11 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "test": "jest",
-        "start": "node ./dist/index",
         "dev": "ts-node-dev --respawn src/index.ts",
-        "format": "prettier ./ -w"
+        "format": "prettier ./ -w",
+        "start": "node ./dist/index",
+        "test": "jest",
+        "typecheck": "tsc --noEmit"
     },
     "keywords": [],
     "author": "",
@@ -30,9 +31,12 @@
     },
     "dependencies": {
         "@elastic/elasticsearch": "^8.1.0",
+        "@types/random-words": "^1.1.2",
+        "bson-objectid": "^2.0.3",
         "config": "^3.3.7",
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
-        "mongoose": "^6.2.9"
+        "mongoose": "^6.2.9",
+        "random-words": "^1.1.2"
     }
 }
