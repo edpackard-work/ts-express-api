@@ -36,9 +36,11 @@ export const randomProse = (options?: Options): string => {
 export const randomNumber = ({
   min,
   max,
-  postfixPool
+  postfixPool,
 }: {
   min?: number
-  max: number,
+  max: number
   postfixPool?: number[]
-}): number => Math.floor(Math.random() * max + (min || 0)) + (postfixPool ? selectRandom(postfixPool) : 0)
+}): number =>
+  Math.floor(Math.random() * max + (min || 0)) +
+  (postfixPool ? selectRandom(postfixPool) : 0)

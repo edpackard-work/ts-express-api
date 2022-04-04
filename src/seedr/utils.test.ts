@@ -19,17 +19,13 @@ describe('selectRandom', () => {
 describe('sentenceFormatted', () => {
   describe('when the given index is 0', () => {
     it('makes the first letter of the first word in a sentence uppercase', () => {
-      expect(sentenceFormatter("bleep", 0)).toBe(
-        "Bleep"
-      )
+      expect(sentenceFormatter('bleep', 0)).toBe('Bleep')
     })
   })
 
   describe('when the given index is not 0', () => {
     it('makes the first letter of the first word in a sentence uppercase', () => {
-      expect(sentenceFormatter("bloop", 4)).toBe(
-        "bloop"
-      )
+      expect(sentenceFormatter('bloop', 4)).toBe('bloop')
     })
   })
 })
@@ -49,8 +45,8 @@ describe('randomProse', () => {
     // '[Dinosaurs are old. ]They are all kill' one match
     const sentenceRegex = /[A-Z][a-z\s]+[.|?|!]\s/g
 
-    expect(manyBitsOfProse.every((prose) => 
-      prose.match(sentenceRegex)
-    )).toBe(true)
+    expect(manyBitsOfProse.every((prose) => prose.match(sentenceRegex))).toBe(
+      true
+    )
   })
 })
