@@ -1,11 +1,15 @@
-import express, { Application } from "express";
+import express, { Application } from 'express'
+import DemoRouter from './router/DemoRouter'
+import ProductRouter from './router/ProductRouter'
 
-import DemoRouter from "./router/DemoRouter";
+export const app: Application = express()
 
-export const app: Application = express();
+const demoRouter = new DemoRouter()
+const productRouter = new ProductRouter()
 
-const demoRouter = new DemoRouter();
+app.use(express.json())
 
-app.use(express.json());
+app.use('/demo', demoRouter.getRouter())
+app.use('/api/v1/products', productRouter.getRouter())
 
-app.use("/demo", demoRouter.getRouter());
+export default app

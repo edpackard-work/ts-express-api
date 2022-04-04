@@ -1,5 +1,5 @@
-import { Product } from "../model/Product"
 import { client } from "./client"
+import { Product } from "../model/Product"
 
 export const read = async () => {
   const result = await client.search<Product>({
