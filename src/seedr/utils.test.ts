@@ -16,7 +16,7 @@ describe('selectRandom', () => {
   })
 })
 
-describe('sentenceFormatted', () => {
+describe('sentenceFormatter', () => {
   describe('when the given index is 0', () => {
     it('makes the first letter of the first word in a sentence uppercase', () => {
       expect(sentenceFormatter('bleep', 0)).toBe('Bleep')
@@ -38,12 +38,14 @@ describe('randomProse', () => {
     // followed by any amount of letters and whitespace
     // followed by punctuation
     // followed by whitespace
-    // eg '[I saw one of the babies. ]It looked at me.' one match
+    // ends with punctuation
+    // eg '[I saw one of the babies. It looked at me.]' one match
     // 'dinosaurs are old' no matches
     // 'Dinosaurs are old' no matches
     // 'Dinosaurs are old.' no matches
-    // '[Dinosaurs are old. ]They are all kill' one match
-    const sentenceRegex = /[A-Z][a-z\s]+[.|?|!]\s/g
+    // '[Dinosaurs are old. They are all kill' no matches
+    // '[Dinosaurs are old. They are all kill.]' one match
+    const sentenceRegex = /[A-Z][a-z\s]+[.|?|!]\s[A-Z][a-z\s]+[.|?|!]$/g
 
     expect(manyBitsOfProse.every((prose) => prose.match(sentenceRegex))).toBe(
       true

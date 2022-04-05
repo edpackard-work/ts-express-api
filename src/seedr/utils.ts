@@ -30,7 +30,7 @@ export const randomProse = (options?: Options): string => {
     join: selectRandom(['. ', '! ', '? ']),
     formatter: sentenceFormatter,
     ...options,
-  })
+  }) + selectRandom(['.', '!', '?'])
 }
 
 export const randomNumber = ({

@@ -12,6 +12,6 @@ module.exports = {
       tsconfig: 'tsconfig.json',
     },
   },
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ['./src/**'],
 }
