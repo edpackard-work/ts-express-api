@@ -1,8 +1,12 @@
 import { app } from '../app'
 import { productModel } from '../model/Product'
+import { Client } from '@elastic/elasticsearch'
+import Mock from '@elastic/elasticsearch-mock'
 
-import * as db from './setup/db'
+import * as db from '../__test__/setup/db'
 import request from 'supertest'
+
+
 
 const productData = {
   name: 'Pen',
@@ -50,3 +54,37 @@ describe('test for /:id GET route', () => {
     )
   })
 })
+
+describe('getAllProducts', () => {
+  beforeAll(async () => {
+    jest.mock('../elastic', () => {
+      const mock = new Mock()
+      mock.add({
+        method: 'GET',
+        path: '/:index/_search/'
+      }, () => {
+        return { 
+          status: 'ok',
+          hits: { hits: [productData]}
+          }
+      })
+    
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: mock.getConnection()
+    })
+    return {
+      client
+    }
+    })
+  })
+
+  it ('gets all products', async() => {
+    const response = await request(app).get(
+      "/api/v1/products"
+    )
+    
+    expect(response.body).toEqual({ products: [productData] })
+  })
+})
+
