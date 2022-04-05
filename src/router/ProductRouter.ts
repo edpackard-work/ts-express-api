@@ -18,8 +18,8 @@ class ProductRouter {
 
     this.router.get('/products', (req, res) => {
       this.controller.getAllProducts(req, res)
-  });
-  };
+    })
+  }
 
   public getRouter() {
     return this.router

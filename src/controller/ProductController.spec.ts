@@ -6,8 +6,6 @@ import Mock from '@elastic/elasticsearch-mock'
 import * as db from '../__test__/setup/db'
 import request from 'supertest'
 
-
-
 const productData = {
   name: 'Pen',
   description: "it's a pen",
@@ -59,32 +57,32 @@ describe('getAllProducts', () => {
   beforeAll(async () => {
     jest.mock('../elastic', () => {
       const mock = new Mock()
-      mock.add({
-        method: 'GET',
-        path: '/:index/_search/'
-      }, () => {
-        return { 
-          status: 'ok',
-          hits: { hits: [productData]}
+      mock.add(
+        {
+          method: 'GET',
+          path: '/:index/_search/',
+        },
+        () => {
+          return {
+            status: 'ok',
+            hits: { hits: [productData] },
           }
+        }
+      )
+
+      const client = new Client({
+        node: 'http://localhost:9200',
+        Connection: mock.getConnection(),
       })
-    
-    const client = new Client({
-      node: 'http://localhost:9200',
-      Connection: mock.getConnection()
-    })
-    return {
-      client
-    }
+      return {
+        client,
+      }
     })
   })
 
-  it ('gets all products', async() => {
-    const response = await request(app).get(
-      "/api/v1/products"
-    )
-    
+  it('gets all products', async () => {
+    const response = await request(app).get('/api/v1/products')
+
     expect(response.body).toEqual({ products: [productData] })
   })
 })
-
