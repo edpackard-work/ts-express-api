@@ -1,27 +1,26 @@
 import { deleteAllProducts, seedProducts } from '.'
 import { randomProducts } from './randomProducts'
-import { 
+import {
   seedProducts as seedElasticProducts,
-  deleteAllProducts as deleteAllElasticProducts
+  deleteAllProducts as deleteAllElasticProducts,
 } from './elastic'
-import { 
+import {
   seedProducts as seedMongoProducts,
-  deleteAllProducts as deleteAllMongoProducts
+  deleteAllProducts as deleteAllMongoProducts,
 } from './mongo'
 
 jest.mock('./randomProducts', () => ({
   randomProducts: jest.fn(),
 }))
 
-
 jest.mock('./elastic', () => ({
   seedProducts: jest.fn(),
-  deleteAllProducts: jest.fn()
+  deleteAllProducts: jest.fn(),
 }))
 
 jest.mock('./mongo', () => ({
   seedProducts: jest.fn(),
-  deleteAllProducts: jest.fn()
+  deleteAllProducts: jest.fn(),
 }))
 
 describe('deleteAllProducts', () => {
@@ -45,7 +44,7 @@ describe('seedProducts', () => {
   it('clears the dbs before starting', async () => {
     await seedProducts(10)
     expect(deleteAllElasticProducts).toHaveBeenCalledTimes(1)
-    expect(deleteAllMongoProducts).toHaveBeenCalledTimes(1)  
+    expect(deleteAllMongoProducts).toHaveBeenCalledTimes(1)
   })
 
   it('seeds mongo and elastic', async () => {
@@ -56,19 +55,19 @@ describe('seedProducts', () => {
 
   describe('if seeding mongo fails', () => {
     it('deletes everything', async () => {
-      (seedMongoProducts as jest.Mock).mockRejectedValueOnce('error')
+      ;(seedMongoProducts as jest.Mock).mockRejectedValueOnce('error')
       await seedProducts(10)
       expect(deleteAllElasticProducts).toHaveBeenCalledTimes(2)
-      expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)  
+      expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)
     })
   })
 
   describe('if seeding elastic fails', () => {
     it('deletes everything', async () => {
-      (seedElasticProducts as jest.Mock).mockRejectedValueOnce('error')
+      ;(seedElasticProducts as jest.Mock).mockRejectedValueOnce('error')
       await seedProducts(10)
       expect(deleteAllElasticProducts).toHaveBeenCalledTimes(2)
-      expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)  
+      expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)
     })
   })
 })

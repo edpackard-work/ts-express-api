@@ -23,14 +23,16 @@ export const randomTitle = (options?: Options) =>
 
 export const randomProse = (options?: Options): string => {
   // min and max define the number of sentences
-  return randomWords({
-    min: 3,
-    max: 7,
-    wordsPerString: Math.floor(5 + Math.random() * 20),
-    join: selectRandom(['. ', '! ', '? ']),
-    formatter: sentenceFormatter,
-    ...options,
-  }) + selectRandom(['.', '!', '?'])
+  return (
+    randomWords({
+      min: 3,
+      max: 7,
+      wordsPerString: Math.floor(5 + Math.random() * 20),
+      join: selectRandom(['. ', '! ', '? ']),
+      formatter: sentenceFormatter,
+      ...options,
+    }) + selectRandom(['.', '!', '?'])
+  )
 }
 
 export const randomNumber = ({

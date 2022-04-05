@@ -1,5 +1,5 @@
 import { client } from '../../elastic'
-import { Product } from "../../model/Product"
+import { Product } from '../../model/Product'
 
 interface BulkInsertableProducts {
   body: Array<
