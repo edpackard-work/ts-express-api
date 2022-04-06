@@ -15,6 +15,10 @@ class ProductRouter {
     this.router.get('/:id', (req, res) => {
       this.controller.getProductById(req, res)
     })
+
+    this.router.get('/', (req, res) => {
+      this.controller.getAllProducts(req, res)
+    })
   }
 
   public getRouter() {

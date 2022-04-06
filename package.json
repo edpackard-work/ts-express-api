@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@elastic/elasticsearch-mock": "^2.0.0",
     "@types/config": "0.0.41",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
