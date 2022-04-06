@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose'
+import { ProductCategory, productCategoryModel } from './ProductCategory'
+console.log("🚀 ~ file: Product.ts ~ line 3 ~ productCategoryModel", productCategoryModel)
 
 export interface Product {
   _id: string
@@ -6,7 +8,7 @@ export interface Product {
   description: string
   price: number
   stock: number
-  category: string
+  categories: ProductCategory[]
 }
 
 const productSchema = new Schema<Product>({
@@ -26,10 +28,13 @@ const productSchema = new Schema<Product>({
     type: Number,
     required: true,
   },
-  category: {
-    type: String,
+  categories: [{
+    type: Schema.Types.ObjectId,
     require: true,
-  },
+    ref: 'ProductCategory'
+  }],
+}, {
+  timestamps: true,
 })
 
 export const productModel = model<Product>('Product', productSchema)

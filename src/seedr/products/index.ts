@@ -14,7 +14,7 @@ export const deleteAllProducts = async () => {
 }
 
 export const seedProducts = async (amount: number): Promise<void> => {
-  const products = randomProducts(amount)
+  const [products, productCategories] = randomProducts(amount)
 
   await deleteAllProducts()
 

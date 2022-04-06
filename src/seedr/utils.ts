@@ -5,6 +5,16 @@ export const selectRandom = <arrEl>(pool: arrEl[]): arrEl => {
   return pool[randomIndex]
 }
 
+export const selectRandomSubset = <arrEl>(
+  pool: arrEl[],
+  options?: { min?: number; max?: number }
+): arrEl[] => {
+  const { min = 0, max = pool.length } = options || {}
+  return Array(Math.floor(min + Math.random() * max))
+    .fill(null)
+    .map(() => selectRandom(pool))
+}
+
 export const titlize = (word: string): string =>
   word.slice(0, 1).toUpperCase().concat(word.slice(1))
 
