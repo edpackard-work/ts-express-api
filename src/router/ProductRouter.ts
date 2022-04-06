@@ -12,11 +12,11 @@ class ProductRouter {
   }
 
   private setUpRouter() {
-    this.router.get('/products/:id', (req, res) => {
+    this.router.get('/:id', (req, res) => {
       this.controller.getProductById(req, res)
     })
 
-    this.router.get('/products', (req, res) => {
+    this.router.get('/', (req, res) => {
       this.controller.getAllProducts(req, res)
     })
   }
