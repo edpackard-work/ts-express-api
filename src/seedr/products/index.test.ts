@@ -7,10 +7,11 @@ import {
 import {
   seedProducts as seedMongoProducts,
   deleteAllProducts as deleteAllMongoProducts,
+  deleteAllProductCategories
 } from './mongo'
 
 jest.mock('./randomProducts', () => ({
-  randomProducts: jest.fn(),
+  randomProducts: jest.fn(jest.requireActual('./randomProducts').randomProducts),
 }))
 
 jest.mock('./elastic', () => ({
@@ -20,7 +21,9 @@ jest.mock('./elastic', () => ({
 
 jest.mock('./mongo', () => ({
   seedProducts: jest.fn(),
+  seedProductCategories: jest.fn(),
   deleteAllProducts: jest.fn(),
+  deleteAllProductCategories: jest.fn()
 }))
 
 describe('deleteAllProducts', () => {
@@ -45,6 +48,7 @@ describe('seedProducts', () => {
     await seedProducts(10)
     expect(deleteAllElasticProducts).toHaveBeenCalledTimes(1)
     expect(deleteAllMongoProducts).toHaveBeenCalledTimes(1)
+    expect(deleteAllProductCategories).toHaveBeenCalledTimes(1)
   })
 
   it('seeds mongo and elastic', async () => {
@@ -59,6 +63,7 @@ describe('seedProducts', () => {
       await seedProducts(10)
       expect(deleteAllElasticProducts).toHaveBeenCalledTimes(2)
       expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)
+      expect(deleteAllProductCategories).toHaveBeenCalledTimes(2)
     })
   })
 
@@ -68,6 +73,7 @@ describe('seedProducts', () => {
       await seedProducts(10)
       expect(deleteAllElasticProducts).toHaveBeenCalledTimes(2)
       expect(deleteAllMongoProducts).toHaveBeenCalledTimes(2)
+      expect(deleteAllProductCategories).toHaveBeenCalledTimes(2)
     })
   })
 })

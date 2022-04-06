@@ -26,7 +26,7 @@ describe('deleteAllProducts', () => {
 
 describe('seedProducts', () => {
   it('calls the bulk api with a list of products', async () => {
-    const products = randomProducts(1)
+    const [products] = randomProducts(1)
     const formattedProducts = formatProductsForBulkInsert(products)
     await seedProducts(products)
     expect(client.bulk).toHaveBeenCalledWith(formattedProducts)
@@ -35,7 +35,7 @@ describe('seedProducts', () => {
 
 describe('formatProductsForBulkInsert', () => {
   it('makes an array of alternating operations and documents', () => {
-    const products = randomProducts(4)
+    const [products] = randomProducts(4)
     const formattedProducts = formatProductsForBulkInsert(products)
     formattedProducts.body.forEach((element, index) => {
       if (index % 2 === 0) {
