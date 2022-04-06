@@ -1,7 +1,8 @@
 import { app } from '../app'
 import { productModel } from '../model/Product'
+import { Client } from '@elastic/elasticsearch'
 
-import * as db from './setup/db'
+import * as db from '../__test__/setup/db'
 import request from 'supertest'
 
 const productData = {
