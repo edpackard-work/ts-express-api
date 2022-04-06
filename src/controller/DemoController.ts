@@ -9,7 +9,7 @@ class DemoController {
     this.database = db
   }
 
-  getMessage(req: Request, res: Response) {
+  getMessage(_: Request, res: Response) {
     const message = this.database.getMessageData()
     return res.status(200).json(message)
   }

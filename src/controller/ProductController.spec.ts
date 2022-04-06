@@ -1,6 +1,5 @@
 import { app } from '../app'
 import { productModel } from '../model/Product'
-import { Client } from '@elastic/elasticsearch'
 
 import * as db from '../__test__/setup/db'
 import request from 'supertest'
@@ -13,19 +12,18 @@ const productData = {
   category: 'stationery',
 }
 
-beforeAll(async () => {
-  await db.connect()
-})
-
-afterEach(async () => {
-  await db.clearDatabase()
-})
-
-afterAll(async () => {
-  await db.closeDatabase()
-})
-
 describe('test for /:id GET route', () => {
+  beforeAll(async () => {
+    await db.connect()
+  })
+
+  afterEach(async () => {
+    await db.clearDatabase()
+  })
+
+  afterAll(async () => {
+    await db.closeDatabase()
+  })
   it('gets a product with a valid id', async () => {
     const validProduct = new productModel(productData)
     const savedProduct = await validProduct.save()

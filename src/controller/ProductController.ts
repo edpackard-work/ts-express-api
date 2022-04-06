@@ -17,7 +17,7 @@ class ProductController {
     }
   }
 
-  async getAllProducts(req: Request, res: Response) {
+  async getAllProducts(_: Request, res: Response) {
     let query: any = {
       index: 'products',
     }
