@@ -6,7 +6,6 @@ import {
 import { randomProducts } from './randomProducts'
 import * as db from '../../__test__/setup/db'
 import { productModel } from '../../model/Product'
-import { selectRandom } from '../utils'
 
 describe('deleteAllProducts', () => {
   beforeAll(async () => {
