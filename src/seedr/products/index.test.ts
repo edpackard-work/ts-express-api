@@ -7,11 +7,13 @@ import {
 import {
   seedProducts as seedMongoProducts,
   deleteAllProducts as deleteAllMongoProducts,
-  deleteAllProductCategories
+  deleteAllProductCategories,
 } from './mongo'
 
 jest.mock('./randomProducts', () => ({
-  randomProducts: jest.fn(jest.requireActual('./randomProducts').randomProducts),
+  randomProducts: jest.fn(
+    jest.requireActual('./randomProducts').randomProducts
+  ),
 }))
 
 jest.mock('./elastic', () => ({
@@ -23,7 +25,7 @@ jest.mock('./mongo', () => ({
   seedProducts: jest.fn(),
   seedProductCategories: jest.fn(),
   deleteAllProducts: jest.fn(),
-  deleteAllProductCategories: jest.fn()
+  deleteAllProductCategories: jest.fn(),
 }))
 
 describe('deleteAllProducts', () => {

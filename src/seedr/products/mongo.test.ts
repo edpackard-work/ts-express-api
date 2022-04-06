@@ -70,7 +70,7 @@ describe('seedProducts', () => {
         ...document
       } = leanDocument
       expect(document).toEqual(leanProduct)
-      // @ts-ignore 
+      // @ts-ignore
       expect(documentCategories.map(({ _id }) => _id.toHexString())).toEqual(
         generatedCategories.map(({ _id }) => _id)
       )

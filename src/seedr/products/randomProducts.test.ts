@@ -26,11 +26,12 @@ describe('randomCategories', () => {
     categories.every((category, index) => {
       expect(category._id !== categories?.[index - 1]?._id).toBe(true)
       expect(category.name !== categories?.[index - 1]?.name).toBe(true)
-      expect(category.description !== categories?.[index - 1]?.description).toBe(true)
+      expect(
+        category.description !== categories?.[index - 1]?.description
+      ).toBe(true)
     })
   })
 })
-
 
 describe('randomProduct', () => {
   it('returns a product with random attributes', () => {
@@ -66,7 +67,9 @@ describe('randomProducts', () => {
     products.every((product, index) => {
       expect(product._id !== categories?.[index - 1]?._id).toBe(true)
       expect(product.name !== categories?.[index - 1]?.name).toBe(true)
-      expect(product.description !== categories?.[index - 1]?.description).toBe(true)
+      expect(product.description !== categories?.[index - 1]?.description).toBe(
+        true
+      )
     })
   })
 })
