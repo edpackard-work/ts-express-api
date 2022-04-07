@@ -38,7 +38,7 @@ export const categoryQuery = (req: Request) => ({
 
 // const offset = req.query?.from;
 
-const makeEmptyQuery = (): any => ({ 
+const makeEmptyQuery = (): any => ({
   index: 'products',
   from: 0,
   size: 0,
@@ -64,11 +64,11 @@ export const buildQuery = (req: Request) => {
   }
 
   if (req.query?.limit) {
-    query.size = req.query.limit;
+    query.size = req.query.limit
   }
 
   if (req.query?.offset) {
-    query.from = req.query.offset;
+    query.from = req.query.offset
   }
 
   if (req.query?.category) {
