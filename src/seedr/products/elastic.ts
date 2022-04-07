@@ -23,5 +23,5 @@ export const seedProducts = async (products: Product[]) => {
 }
 
 export const deleteAllProducts = async () => {
-  await client.indices.delete({ index: 'products' }).catch(console.log)
+  await client.indices.delete({ index: 'products' })?.catch(console.log)
 }
