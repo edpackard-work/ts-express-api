@@ -44,7 +44,7 @@ const makeEmptyQuery = (): any => ({
 })
 
 const isLimitValid = (query: any): any => {
-  return query <= 10000 && query != NaN;
+  return query <= 10000 && query != NaN
 }
 
 export const buildQuery = (req: Request) => {
