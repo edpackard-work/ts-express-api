@@ -6,7 +6,9 @@ class ProductController {
   async getProductById(req: Request, res: Response) {
     const id = req.params.id
     try {
-      const product = await productModel.findOne({ _id: id })
+      const product = await productModel
+        .findOne({ _id: id })
+        .populate('categories')
       if (product) {
         return res.status(200).json(product)
       }

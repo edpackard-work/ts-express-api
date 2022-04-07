@@ -5,7 +5,9 @@ import {
 } from './elastic'
 import {
   seedProducts as seedMongoProducts,
+  seedProductCategories as seedMongoProductCategories,
   deleteAllProducts as deleteAllMongoProducts,
+  deleteAllProductCategories,
 } from './mongo'
 
 export const deleteAllProducts = async () => {
@@ -14,13 +16,16 @@ export const deleteAllProducts = async () => {
 }
 
 export const seedProducts = async (amount: number): Promise<void> => {
-  const products = randomProducts(amount)
+  const [products, productCategories] = randomProducts(amount)
 
   await deleteAllProducts()
+  await deleteAllProductCategories()
 
   try {
     console.log('Seeding products in Mongo')
     await seedMongoProducts(products)
+    console.log('Seeding product categories in Mongo')
+    await seedMongoProductCategories(productCategories)
     console.log('Seeding products in Elastic')
     await seedElasticProducts(products)
   } catch (error) {
@@ -28,5 +33,6 @@ export const seedProducts = async (amount: number): Promise<void> => {
     console.log((error as Error)?.message)
     console.log('Unwinding seeded data')
     await deleteAllProducts()
+    await deleteAllProductCategories()
   }
 }

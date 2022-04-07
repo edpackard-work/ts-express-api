@@ -1,16 +1,10 @@
+import request from 'supertest'
 import { app } from '../app'
 import { productModel } from '../model/Product'
-
 import * as db from '../__test__/setup/db'
-import request from 'supertest'
+import { randomProducts } from '../seedr/products/randomProducts'
 
-const productData = {
-  name: 'Pen',
-  description: "it's a pen",
-  stock: 7,
-  price: 11,
-  category: 'stationery',
-}
+const [[productData]] = randomProducts(1)
 
 describe('test for /:id GET route', () => {
   beforeAll(async () => {
@@ -33,11 +27,10 @@ describe('test for /:id GET route', () => {
     )
 
     expect(response.statusCode).toEqual(200)
-    expect(response.body.name).toEqual('Pen')
-    expect(response.body.description).toEqual("it's a pen")
-    expect(response.body.stock).toEqual(7)
-    expect(response.body.price).toEqual(11)
-    expect(response.body.category).toEqual('stationery')
+    expect(response.body.name).toEqual(productData.name)
+    expect(response.body.description).toEqual(productData.description)
+    expect(response.body.stock).toEqual(productData.stock)
+    expect(response.body.price).toEqual(productData.price)
   })
 
   it('returns correct status code and message for invalid input', async () => {
