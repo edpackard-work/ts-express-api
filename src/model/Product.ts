@@ -1,9 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { ProductCategory, productCategoryModel } from './ProductCategory'
-console.log(
-  '🚀 ~ file: Product.ts ~ line 3 ~ productCategoryModel',
-  productCategoryModel
-)
+import { ProductCategory } from './ProductCategory'
 
 export interface Product {
   _id: string
