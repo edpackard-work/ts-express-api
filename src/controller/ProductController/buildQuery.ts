@@ -1,4 +1,4 @@
-import { Request } from "express"
+import { Request } from 'express'
 
 export const searchQuery = (req: Request) => [
   {
@@ -47,7 +47,7 @@ export const buildQuery = (req: Request) => {
   const query = makeEmptyQuery()
 
   if (req.query?.search) {
-    searchQuery(req).forEach(segment => {
+    searchQuery(req).forEach((segment) => {
       query.body.query.bool.should.push(segment)
     })
   }
