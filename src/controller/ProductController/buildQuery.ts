@@ -1,6 +1,5 @@
 import { Request } from 'express'
 
-
 export const searchQuery = (req: Request) => [
   {
     fuzzy: {
@@ -45,7 +44,7 @@ const makeEmptyQuery = (): any => ({
 })
 
 const isLimitValid = (query: any): any => {
- console.log(query <= 10000 && query != NaN);
+  console.log(query <= 10000 && query != NaN)
 }
 
 export const buildQuery = (req: Request) => {
@@ -56,7 +55,7 @@ export const buildQuery = (req: Request) => {
       query.body.query.bool.should.push(segment)
     })
   }
-  
+
   if (typeof req.query?.offset && isLimitValid(req.query.offset)) {
     query.from = req.query.offset
   }
@@ -71,4 +70,3 @@ export const buildQuery = (req: Request) => {
 
   return query
 }
-
