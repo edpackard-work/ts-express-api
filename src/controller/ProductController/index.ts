@@ -1,8 +1,9 @@
 import { Request, Response } from 'express'
-import { productModel } from '../model/Product'
-import { client as elasticClient } from '../elastic'
+import { Product, productModel } from '../../model/Product'
+import { client as elasticClient } from '../../elastic'
+import { buildQuery } from './buildQuery'
 
-class ProductController {
+export class ProductController {
   async getProductById(req: Request, res: Response) {
     const id = req.params.id
     try {
@@ -19,14 +20,11 @@ class ProductController {
     }
   }
 
-  async getAllProducts(_: Request, res: Response) {
-    let query: any = {
-      index: 'products',
-    }
+  async getAllProducts(req: Request, res: Response) {
+    const query = buildQuery(req)
     elasticClient
-      .search(query)
-      .then((resp: { hits: { hits: any } }) => {
-        console.log(query)
+      .search<Product>(query)
+      .then((resp) => {
         return res.status(200).json({
           products: resp.hits.hits,
         })
@@ -40,5 +38,3 @@ class ProductController {
       })
   }
 }
-
-export default ProductController
