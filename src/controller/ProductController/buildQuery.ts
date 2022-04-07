@@ -29,15 +29,6 @@ export const categoryQuery = (req: Request) => ({
   },
 })
 
-// const getLimitOffset = (req: Request): any => ({
-//   query = makeEmptyQuery();
-//   if (req.query?.limit) {
-//     return req.query.limit
-//   };
-// })
-
-// const offset = req.query?.from;
-
 const makeEmptyQuery = (): any => ({
   index: 'products',
   from: 0,
