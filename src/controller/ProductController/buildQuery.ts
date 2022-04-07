@@ -29,8 +29,19 @@ export const categoryQuery = (req: Request) => ({
   },
 })
 
-const makeEmptyQuery = (): any => ({
+// const getLimitOffset = (req: Request): any => ({
+//   query = makeEmptyQuery();
+//   if (req.query?.limit) {
+//     return req.query.limit
+//   };
+// })
+
+// const offset = req.query?.from;
+
+const makeEmptyQuery = (): any => ({ 
   index: 'products',
+  from: 0,
+  size: 0,
   body: {
     query: {
       bool: {
@@ -50,6 +61,14 @@ export const buildQuery = (req: Request) => {
     searchQuery(req).forEach((segment) => {
       query.body.query.bool.should.push(segment)
     })
+  }
+
+  if (req.query?.limit) {
+    query.size = req.query.limit;
+  }
+
+  if (req.query?.offset) {
+    query.from = req.query.offset;
   }
 
   if (req.query?.category) {
