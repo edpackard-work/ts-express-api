@@ -31,8 +31,6 @@ export const categoryQuery = (req: Request) => ({
 
 const makeEmptyQuery = (): any => ({
   index: 'products',
-  from: 0,
-  size: 0,
   body: {
     query: {
       bool: {
