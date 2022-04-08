@@ -43,8 +43,9 @@ const makeEmptyQuery = (): any => ({
   },
 })
 
-const isLimitValid = (query: any): any => {
-  return query <= 10000 && query != NaN
+const isQueryParamValidNumber = (query: unknown): Boolean => {
+  let result = query as Number
+  return result <= 10000 && result >= 0 && Number.isSafeInteger(result)
 }
 
 export const buildQuery = (req: Request) => {
@@ -56,11 +57,11 @@ export const buildQuery = (req: Request) => {
     })
   }
 
-  if (typeof req.query?.offset && isLimitValid(req.query.offset)) {
+  if (typeof req.query?.offset && isQueryParamValidNumber(req.query.offset)) {
     query.from = req.query.offset
   }
 
-  if (req.query?.limit && isLimitValid(req.query.limit)) {
+  if (req.query?.limit && isQueryParamValidNumber(req.query.limit)) {
     query.size = req.query.limit
   }
 
