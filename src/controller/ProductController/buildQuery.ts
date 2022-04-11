@@ -1,17 +1,18 @@
 import { Request } from 'express'
+import { inspect } from 'util'
 
 export const searchQuery = (req: Request) => [
+  {
+    fuzzy: {
+      description: req.query?.search,
+    },
+  },
   {
     fuzzy: {
       name: {
         value: req.query?.search,
         boost: 5,
       },
-    },
-  },
-  {
-    fuzzy: {
-      description: req.query?.search,
     },
   },
   {
@@ -43,7 +44,7 @@ const makeEmptyQuery = (): any => ({
   },
 })
 
-const isQueryParamValidNumber = (query: unknown): Boolean => {
+export const isQueryParamValidNumber = (query: unknown): Boolean => {
   let result = query as Number
   return result <= 10000 && result >= 0 && Number.isSafeInteger(result)
 }
@@ -67,6 +68,8 @@ export const buildQuery = (req: Request) => {
 
   if (req.query?.category) {
     query.body.query.bool.must.push(categoryQuery(req))
+    console.log(inspect(req.query, false, null, true))
+    console.log(inspect(categoryQuery(req), false, null, true))
   }
 
   return query
